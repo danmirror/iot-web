@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Licorice&family=M+PLUS+Rounded+1c:wght@500&display=swap');
+
+// .chart{
+//    width: 80rem;
+//    height: 5rem;
+// }
+.logo-title{
+   margin-bottom: 0;
+   font-family:'Licorice', cursive;
+   text-align: center;
+   font-size: 22px;
+}
+h4{
+   font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.container-content{
+   padding: 2em 2em;
+}
+.title{
+   text-align: center;
+}
+hr{
+   width: 20rem;
+   border: 1px solid #111;
+}
+.breadcrumbs, .note{
+   color: rgb(131, 128, 128);
+}
+iframe{
+   width: 900px;
+   height: 600px;
+}
+
+@media (max-width: 768px) {
+   .chart{
+      width: 350px;
+      // height: 2rem;
+      
+   }
+   .container{
+      padding: 50px 0em !important;
+   }
+
+   iframe{
+      width: 350px;
+      height: 400px;
+   }
+   
+}

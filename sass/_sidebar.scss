@@ -1,0 +1,85 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+ 
+#sidebar-wrapper {
+  position: fixed;
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  z-index: 99;
+  // background-color: cornsilk!important;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 90vw;
+  margin-top: 3rem;
+}
+ 
+#wrapper.toggled #sidebar-wrapper,#wrapper.toggled  #page-content-wrapper {
+  margin-left: 0;
+  transition: 0.7s;
+}
+#wrapper.toggled .navbar.fixed-top{
+  left: 15rem;
+  transition: 0.8s;
+}
+
+@media (max-width: 768px) {
+  #wrapper.toggled #search{
+    display: none;
+    transition: 0.8s;
+  }
+  #search input{
+    width: 150px;
+    margin-right: .5rem;
+  }
+}
+ 
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+  .navbar.fixed-top{
+    left: 15rem;
+    // transition: 0.8s;
+  }
+  #wrapper.toggled .navbar.fixed-top{
+    left: 0;
+    transition: 0.8s;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+    margin-left: 15rem;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+#menu-toggle{
+  border : 0px solid #333;
+  border-radius: 5px;
+  font-size:25px;
+}
+
+
+
+ 
