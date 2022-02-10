@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="asset/css/style.css" rel="stylesheet">
     
 
 </head>
@@ -59,7 +59,7 @@
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">
-        <img src="image/smartphone.png" alt="" style="width: 170px;">   
+        <img src="asset/image/smartphone.png" alt="" style="width: 170px;">   
         <p class="logo-title">Internet Of Things</p> 
       </div>
       <div class="list-group list-group-flush">
@@ -67,7 +67,10 @@
           <i class="far fa-compass"></i> Dashboard
         </a>
         <a href="avarage.php" class="list-group-item list-group-item-action bg-light">
-          <i class="fas fa-chart-bar"></i> Avarage RR
+          <i class="fas fa-chart-bar"></i> Avarage 
+        </a>
+        <a href="control.php" class="list-group-item list-group-item-action bg-light">
+          <i class="fas fa-chart-bar"></i> Control
         </a>
         <a href="location.php" class="list-group-item list-group-item-action bg-light">
           <i class="fas fa-map-marker-alt"></i>  Location
