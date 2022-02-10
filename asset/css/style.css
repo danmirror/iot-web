@@ -100,5 +100,39 @@ iframe {
   iframe {
     width: 350px;
     height: 400px; } }
+.card {
+  max-width: 18rem; }
+
+.border-left-one {
+  border-left: .35rem solid  #7b93dd !important; }
+
+.border-left-second {
+  border-left: .35rem solid  #75d369 !important; }
+
+.border-left-third {
+  border-left: .35rem solid  #e9a1d1 !important; }
+
+.border-left-fourth {
+  border-left: .35rem solid  #cbe06a !important; }
+
+.border-left-fiveth {
+  border-left: .35rem solid  #db8e84 !important; }
+
+.border-left-warning {
+  border-left: .35rem solid  #cbe06a !important; }
+
+.border-left-normal {
+  border-left: .35rem solid  #75d369 !important; }
+
+.border-left-danger {
+  border-left: .35rem solid  #ff4362 !important; }
+
+.row {
+  margin-right: 0 !important;
+  margin-left: 0 !important; }
+
+@media (max-width: 768px) {
+  .margin-left {
+    margin-left: 20px; } }
 
 /*# sourceMappingURL=style.css.map */

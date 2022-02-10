@@ -6,14 +6,19 @@
 	while($row=mysqli_fetch_assoc($data)){
 		$rows[]=$row;
     }
-    $container = [];
     foreach($rows as $row){
-        $container[] = $row['value1'];
-        $container[] = $row['value2'];
-        $container[] = $row['value3'];
-        $container[] = $row['value4'];
+        $contain1 = $row['value1'];
+        $contain2 = $row['value2'];
+        $contain3 = $row['value3'];
+        $contain4 = $row['value4'];
     }
+    $containers = array(
+        "btn1" => $contain1,
+        "btn2" => $contain2,
+        "btn3" => $contain3,
+        "btn4" => $contain4,
+    );
 
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($container);
+    echo json_encode($containers);
 ?>
