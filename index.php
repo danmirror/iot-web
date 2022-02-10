@@ -10,27 +10,27 @@
   else{
     $data = mysqli_query($konek,"SELECT * FROM tb_sensor");
   }
-  $suhu1=[];
-  $suhu2=[];
-  $kelembaban1=[];
-  $kelembaban2=[];
-  $gas=[];
+  $suhu1        =[];
+  $suhu2        =[];
+  $kelembaban1  =[];
+  $kelembaban2  =[];
+  $gas          =[];
   
-  $time = [];
-  $count=0;
-  $rows=[];
+  $time   =[];
+  $count  =0;
+  $rows   =[];
 	while($row=mysqli_fetch_assoc($data)){
 		$rows[]=$row;
   }
   // var_dump($rows);
   // exit;
   foreach($rows as $row){
-    $time_data = strtotime($row["time"]);
-    $suhu1[] = $row["suhu1"];
-    $suhu2[] = $row["suhu2"];
-    $kelembaban1[] = $row["kelembaban1"];
-    $kelembaban2[] = $row["kelembaban2"];
-    $gas[] = $row["gas"];
+    $time_data      = strtotime($row["time"]);
+    $suhu1[]        = $row["suhu1"];
+    $suhu2[]        = $row["suhu2"];
+    $kelembaban1[]  = $row["kelembaban1"];
+    $kelembaban2[]  = $row["kelembaban2"];
+    $gas[]          = $row["gas"];
 
     // $time[] = date("H:i d-M-Y", $time_data);
     // $time[] = date("H:i d-M-Y", $time_data+1*60*60);
