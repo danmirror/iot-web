@@ -1,4 +1,8 @@
 <?php
+// Author       : Danu Andrean
+// Maintenance  : Danu andrean
+// year         : 2020 - 2022
+
 class database{
 
     public static $servername = "localhost";

@@ -1,4 +1,9 @@
 <?php
+
+// Author       : Danu Andrean
+// Maintenance  : Danu andrean
+// year         : 2020 - 2022
+
 include 'database.php';
 session_start();
 
