@@ -1,29 +1,4 @@
-<?php
-  require "config.php";
 
-  // =========================database query============
-  if (isset($_GET['cari'])){
-    $cari = $_GET['cari'];
-
-    $data = mysqli_query($konek,"SELECT * FROM iot_try WHERE data_sensor like '%".$cari."%' ");
-  }
-  else{
-    $data = mysqli_query($konek,"SELECT * FROM iot_try");
-  }
-  $sensor=[];
-  $time = [];
-
-  $rows=[];
-	while($row=mysqli_fetch_assoc($data)){
-		$rows[]=$row;
-  }
-  // var_dump($rows);
-  // exit;
-  foreach($rows as $row){
-    $sensor[] = $row["data_sensor"];
-    $time[] = $row["time"];
-  }
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -114,7 +89,7 @@
       
 
       <div class="container-content">
-        <h4 class="mt-2 ">Avarage Sensor Per Day</h4>
+        <h4 class="mt-2 ">Maps</h4>
         <p class="breadcrumbs">Dashboard / Maps</p>
         <div class="container shadow mb-4">
           <div class="col-md">
