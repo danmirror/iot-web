@@ -1,22 +1,22 @@
 <?php
    include 'config.php';
    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      $suhu1 =$_POST["suhu1"];
-      $kelembaban1 =$_POST["kelembaban1"];
-      $suhu2 =$_POST["suhu2"];
-      $kelembaban2 =$_POST["kelembaban2"];
-      $gas =$_POST["gas"];
-      mysqli_query($konek, "INSERT into tb_sensor(suhu1, kelembaban1, suhu2, kelembaban2, gas)values($suhu1, $kelembaban1, $suhu2, $kelembaban2, $gas)");
+      $sensor1 =$_POST["sensor1"];
+      $sensor2 =$_POST["sensor2"];
+      $sensor3 =$_POST["sensor3"];
+      $sensor4 =$_POST["sensor4"];
+      $sensor5 =$_POST["sensor5"];
+      mysqli_query($konek, "INSERT into tb_sensor(sensor1, sensor2, sensor3, sensor4, sensor5)values($sensor1, $sensor2, $sensor3, $sensor4, $sensor5)");
       echo "post";
    }
    else{
-      $suhu1 =$_GET["suhu1"];
-      $kelembaban1 =$_GET["kelembaban1"];
-      $suhu2 =$_GET["suhu2"];
-      $kelembaban2 =$_GET["kelembaban2"];
-      $gas =$_GET["gas"];
-      var_dump($gas);
-      $save  = mysqli_query($konek, "INSERT into tb_sensor(suhu1, kelembaban1, suhu2, kelembaban2, gas)values($suhu1, $kelembaban1, $suhu2, $kelembaban2, $gas)");
+      $sensor1 =$_GET["sensor1"];
+      $sensor2 =$_GET["sensor2"];
+      $sensor3 =$_GET["sensor3"];
+      $sensor4 =$_GET["sensor4"];
+      $sensor5 =$_GET["sensor5"];
+      // var_dump($sensor5);
+      $save  = mysqli_query($konek, "INSERT into tb_sensor(sensor1, sensor2, sensor3, sensor4, sensor5)values($sensor1, $sensor2, $sensor3, $sensor4, $sensor5)");
       if($save){
          echo "get done";
       }

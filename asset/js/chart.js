@@ -15,25 +15,25 @@ function ajax_chart() {
 
     $.getJSON(url, data).done(function(response) {
         char1.data.labels = response.labels;
-        char1.data.datasets[0].data = response.data.gas; // or you can iterate for multiple datasets
+        char1.data.datasets[0].data = response.data.sensor5; // or you can iterate for multiple datasets
         char1.update(); // finally update our chart
 
         char2_id1.data.labels = response.labels;
-        char2_id1.data.datasets[0].data = response.data.suhu1; // or you can iterate for multiple datasets
-        char2_id1.data.datasets[1].data = response.data.kelembaban1; 
+        char2_id1.data.datasets[0].data = response.data.sensor1; 
+        char2_id1.data.datasets[1].data = response.data.sensor3; 
         char2_id1.update(); // finally update our chart
 
         char2_id2.data.labels = response.labels;
-        char2_id2.data.datasets[0].data = response.data.suhu2; // or you can iterate for multiple datasets
-        char2_id2.data.datasets[1].data = response.data.kelembaban2; 
+        char2_id2.data.datasets[0].data = response.data.sensor2; 
+        char2_id2.data.datasets[1].data = response.data.sensor4; 
         char2_id2.update(); // finally update our chart
 
-        char4_id1.data.datasets[0].data = [response.data.end_suhu1]; // or you can iterate for multiple datasets
-        char4_id1.data.datasets[1].data = [response.data.end_kelembaban1];
+        char4_id1.data.datasets[0].data = [response.data.end_sensor1]; 
+        char4_id1.data.datasets[1].data = [response.data.end_sensor3];
         char4_id1.update(); // finally update our chart
 
-        char4_id2.data.datasets[0].data = [response.data.end_suhu2]; // or you can iterate for multiple datasets
-        char4_id2.data.datasets[1].data = [response.data.end_kelembaban2];
+        char4_id2.data.datasets[0].data = [response.data.end_sensor2]; 
+        char4_id2.data.datasets[1].data = [response.data.end_sensor4];
         char4_id2.update(); // finally update our chart
     });
 }

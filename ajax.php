@@ -10,15 +10,15 @@
   else{
     $data = mysqli_query($konek,"SELECT * FROM tb_sensor");
   }
-  $suhu1=[];
-  $suhu2=[];
-  $kelembaban1=[];
-  $kelembaban2=[];
-  $gas=[];
+  $sensor1 =[];
+  $sensor2 =[];
+  $sensor3 =[];
+  $sensor4 =[];
+  $sensor5 =[];
   
-  $time = [];
-  $count=0;
-  $rows=[];
+  $time   =[];
+  $count  =0;
+  $rows   =[];
 	while($row=mysqli_fetch_assoc($data)){
 		$rows[]=$row;
   }
@@ -26,11 +26,11 @@
   // exit;
   foreach($rows as $row){
     $time_data = strtotime($row["time"]);
-    $suhu1[] = $row["suhu1"];
-    $suhu2[] = $row["suhu2"];
-    $kelembaban1[] = $row["kelembaban1"];
-    $kelembaban2[] = $row["kelembaban2"];
-    $gas[] = $row["gas"];
+    $sensor1[] = $row["sensor1"];
+    $sensor2[] = $row["sensor2"];
+    $sensor3[] = $row["sensor3"];
+    $sensor4[] = $row["sensor4"];
+    $sensor5[] = $row["sensor5"];
 
     // $time[] = date("H:i d-M-Y", $time_data);
     // $time[] = date("H:i d-M-Y", $time_data+1*60*60);
@@ -38,9 +38,6 @@
     $count +=1;
     // var_dump($time);
   }
-//  var_dump($kelembaban1);
-//   exit;
-
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +75,7 @@
                       <div class=" font-weight-bold text-primary text-uppercase mb-1">
                          Gas
                       </div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($gas)?> ppm</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor5)?> ppm</div>
                   </div>
               </div>
             </div>
@@ -90,7 +87,7 @@
                         <div class=" font-weight-bold text-primary text-uppercase mb-1">
                             Suhu1
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($suhu1)?> ℃</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor1)?> ℃</div>
                     </div>
                 </div>
                 </div>
@@ -101,7 +98,7 @@
                     <div class=" font-weight-bold text-primary text-uppercase mb-1">
                          Suhu2
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($suhu2)?> ℃</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor2)?> ℃</div>
                     </div>
                 </div>
             </div> 
@@ -111,7 +108,7 @@
                         <div class=" font-weight-bold text-primary text-uppercase mb-1">
                           Kelembaban1
                         </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($kelembaban1)?> RH</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor3)?> RH</div>
                     </div>
                 </div>
             </div>
@@ -121,7 +118,7 @@
                         <div class=" font-weight-bold text-primary text-uppercase mb-1">
                           Kelembaban2
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($kelembaban2)?> RH</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor4)?> RH</div>
                     </div>
                 </div>
             </div>

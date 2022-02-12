@@ -10,14 +10,15 @@
   else{
     $data = mysqli_query($konek,"SELECT * FROM tb_sensor");
   }
-  $suhu1        =[];
-  $suhu2        =[];
-  $kelembaban1  =[];
-  $kelembaban2  =[];
-  $gas          =[];
+  $sensor1 =[];
+  $sensor2 =[];
+  $sensor3 =[];
+  $sensor4 =[];
+  $sensor5 =[];
   
   $time   =[];
   $count  =0;
+  
   $rows   =[];
 	while($row=mysqli_fetch_assoc($data)){
 		$rows[]=$row;
@@ -25,12 +26,12 @@
   // var_dump($rows);
   // exit;
   foreach($rows as $row){
-    $time_data      = strtotime($row["time"]);
-    $suhu1[]        = $row["suhu1"];
-    $suhu2[]        = $row["suhu2"];
-    $kelembaban1[]  = $row["kelembaban1"];
-    $kelembaban2[]  = $row["kelembaban2"];
-    $gas[]          = $row["gas"];
+    $time_data = strtotime($row["time"]);
+    $sensor1[] = $row["sensor1"];
+    $sensor2[] = $row["sensor2"];
+    $sensor3[] = $row["sensor3"];
+    $sensor4[] = $row["sensor4"];
+    $sensor5[] = $row["sensor5"];
 
     // $time[] = date("H:i d-M-Y", $time_data);
     // $time[] = date("H:i d-M-Y", $time_data+1*60*60);
@@ -147,7 +148,7 @@
                       <div class=" font-weight-bold text-primary text-uppercase mb-1">
                           Gas
                       </div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($gas)?> ppm</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor5)?> ppm</div>
                   </div>
               </div>
             </div>
@@ -159,7 +160,7 @@
                         <div class=" font-weight-bold text-primary text-uppercase mb-1">
                           Suhu1
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($suhu1)?> ℃</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor1)?> ℃</div>
                     </div>
                 </div>
                 </div>
@@ -170,7 +171,7 @@
                     <div class=" font-weight-bold text-primary text-uppercase mb-1">
                           Suhu2
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($suhu2)?> ℃</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor2)?> ℃</div>
                     </div>
                 </div>
             </div> 
@@ -180,7 +181,7 @@
                         <div class=" font-weight-bold text-primary text-uppercase mb-1">
                             Kelembaban1
                         </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($kelembaban1)?> RH</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor3)?> RH</div>
                     </div>
                 </div>
             </div>
@@ -190,7 +191,7 @@
                         <div class=" font-weight-bold text-primary text-uppercase mb-1">
                             Kelembaban2
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($kelembaban2)?> RH</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor4)?> RH</div>
                     </div>
                 </div>
             </div>
@@ -269,11 +270,11 @@
                 for( $i = $count>5  ? $count-5 : 0; $i< count($rows); $i++):?>
                  <tr>
                   <th scope="row"><?= $num ?></th>
-                  <td><?= $rows[$i]["suhu1"];?></td>
-                  <td><?= $rows[$i]["suhu2"];?></td>
-                  <td><?= $rows[$i]["kelembaban1"];?></td>
-                  <td><?= $rows[$i]["kelembaban2"];?></td>
-                  <td><?= $rows[$i]["gas"];?></td>
+                  <td><?= $rows[$i]["sensor1"];?></td>
+                  <td><?= $rows[$i]["sensor2"];?></td>
+                  <td><?= $rows[$i]["sensor3"];?></td>
+                  <td><?= $rows[$i]["sensor4"];?></td>
+                  <td><?= $rows[$i]["sensor5"];?></td>
                   <td><?= $rows[$i]["time"];?></td>
                 </tr>
                 <?php
@@ -300,29 +301,29 @@
     });
 
     let time = <?php echo json_encode($time)?>;
-    let suhu1 = <?php echo json_encode($suhu1)?>;
-    let suhu2 = <?php echo json_encode($suhu2)?>;
+    let sensor1 = <?php echo json_encode($sensor1)?>;
+    let sensor2 = <?php echo json_encode($sensor2)?>;
 
-    let endsuhu1 =  <?= json_encode(end($suhu1)) ?>;
-    let endsuhu2 =  <?= json_encode(end($suhu2)) ?>;
+    let endsensor1 =  <?= json_encode(end($sensor1)) ?>;
+    let endsensor2 =  <?= json_encode(end($sensor2)) ?>;
 
-    let kelembaban1 = <?php echo json_encode($kelembaban1)?>;
-    let kelembaban2 = <?php echo json_encode($kelembaban2)?>;
+    let sensor3 = <?php echo json_encode($sensor3)?>;
+    let sensor4 = <?php echo json_encode($sensor4)?>;
     
-    let endkelembaban1 =  <?= json_encode(end($kelembaban1)) ?>;
-    let endkelembaban2 =  <?= json_encode(end($kelembaban2)) ?>;
+    let endsensor3 =  <?= json_encode(end($sensor3)) ?>;
+    let endsensor4 =  <?= json_encode(end($sensor4)) ?>;
     
-    let gas = <?php echo json_encode($gas)?>;
-    let endgas =  <?= json_encode(end($gas)) ?>;
+    let sensor5 = <?php echo json_encode($sensor5)?>;
+    let endsensor5 =  <?= json_encode(end($sensor5)) ?>;
 
-    double_lines(suhu1,kelembaban1, time, 'sensor1',"Value Sensor 1");
-    double_bars(endsuhu1,endkelembaban1,'bar1');
+    double_lines(sensor1,sensor3, time, 'sensor1',"Value Sensor 1");
+    double_bars(endsensor1,endsensor3,'bar1');
     
-    double_lines(suhu2,kelembaban2, time, 'sensor2',"Value Sensor 2");
-    double_bars(endsuhu2,endkelembaban2,'bar2');
+    double_lines(sensor2,sensor4, time, 'sensor2',"Value Sensor 2");
+    double_bars(endsensor2,endsensor4,'bar2');
 
-    lines(gas, time, 'sensor3',"Value Sensor 3");
-    bars(endgas,'bar3');
+    lines(sensor5, time, 'sensor3',"Value Sensor 3");
+    bars(endsensor5,'bar3');
 
     // get new data every 3 seconds
     setInterval(ajax_chart, 3000);

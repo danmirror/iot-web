@@ -3,15 +3,15 @@
     
     $data = mysqli_query($konek,"SELECT * FROM tb_sensor");
 
-    $suhu1=[];
-    $suhu2=[];
-    $kelembaban1=[];
-    $kelembaban2=[];
-    $gas=[];
+    $sensor1=[];
+    $sensor2=[];
+    $sensor3=[];
+    $sensor4=[];
+    $sensor5=[];
     
-    $time = [];
-    $count=0;
-    $rows=[];
+    $time   = [];
+    $count  = 0;
+    $rows   = [];
     while($row=mysqli_fetch_assoc($data)){
         $rows[]=$row;
     }
@@ -19,11 +19,11 @@
     // exit;
     foreach($rows as $row){
         $time_data = strtotime($row["time"]);
-        $suhu1[]        = $row["suhu1"];
-        $suhu2[]        = $row["suhu2"];
-        $kelembaban1[]  = $row["kelembaban1"];
-        $kelembaban2[]  = $row["kelembaban2"];
-        $gas[]          = $row["gas"];
+        $sensor1[] = $row["sensor1"];
+        $sensor2[] = $row["sensor2"];
+        $sensor3[] = $row["sensor3"];
+        $sensor4[] = $row["sensor4"];
+        $sensor5[] = $row["sensor5"];
 
         // $time[] = date("H:i d-M-Y", $time_data);
         // $time[] = date("H:i d-M-Y", $time_data+1*60*60);
@@ -35,16 +35,16 @@
     $container = array(
         "labels" => $time,
         "data" => [
-            'suhu1'         =>$suhu1,
-            'suhu2'         =>$suhu2,
-            'kelembaban1'   =>$kelembaban1,
-            'kelembaban2'   =>$kelembaban2,
-            'gas'           =>$gas,
-            'end_suhu1'         =>end($suhu1),
-            'end_suhu2'         =>end($suhu2),
-            'end_kelembaban1'   =>end($kelembaban1),
-            'end_kelembaban2'   =>end($kelembaban2),
-            'end_gas'           =>end($gas),
+            'sensor1' =>$sensor1,
+            'sensor2' =>$sensor2,
+            'sensor3' =>$sensor3,
+            'sensor4' =>$sensor4,
+            'sensor5' =>$sensor5,
+            'end_sensor1' =>end($sensor1),
+            'end_sensor2' =>end($sensor2),
+            'end_sensor3' =>end($sensor3),
+            'end_sensor4' =>end($sensor4),
+            'end_sensor5' =>end($sensor5),
         ]
     );
     header('Content-Type: application/json; charset=utf-8');

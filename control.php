@@ -136,7 +136,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md">
-                                        <label >Pressure</label>
+                                        <label >Saklar 1</label>
                                     </div>
                                     <div class="col-md mb-2">
                                         <div class="input-group ">
@@ -146,10 +146,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 ">
-                                    <span class="btn btn-outline-success " onclick="pressure_on();" id="press_id_on">ON</span>
+                                    <span class="btn btn-outline-success " onclick="func_btn1_on();" id="btn1_id_on">ON</span>
                                     </div>
                                     <div class="col-sm-6">
-                                    <span class="btn btn-outline-danger " onclick="pressure_off();" id="press_id_off">off</span>
+                                    <span class="btn btn-outline-danger " onclick="func_btn1_off();" id="btn1_id_off">off</span>
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md">
-                                        <label >Volume</label>
+                                        <label >Saklar 2</label>
                                     </div>
                                     <div class="col-md mb-2">
                                         <div class="input-group ">
@@ -169,10 +169,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 ">
-                                    <span class="btn btn-outline-success " onclick="volume_on();" id="volume_id_on">ON</span>
+                                    <span class="btn btn-outline-success " onclick="func_btn2_on();" id="btn2_id_on">ON</span>
                                     </div>
                                     <div class="col-sm-6">
-                                    <span class="btn btn-outline-danger " onclick="volume_off();" id="volume_id_off">off</span>
+                                    <span class="btn btn-outline-danger " onclick="func_btn2_off();" id="btn2_id_off">off</span>
                                     </div>
                                 </div>
                             </div>
@@ -182,7 +182,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md">
-                                        <label >Boiler</label>
+                                        <label >Saklar 3</label>
                                     </div>
                                     <div class="col-md mb-2">
                                         <div class="input-group ">
@@ -192,10 +192,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 ">
-                                    <span class="btn btn-outline-success " onclick="boiler_on();" id="boiler_id_on">ON</span>
+                                    <span class="btn btn-outline-success " onclick="func_btn3_on();" id="btn3_id_on">ON</span>
                                     </div>
                                     <div class="col-sm-6">
-                                    <span class="btn btn-outline-danger " onclick="boiler_off();" id="boiler_id_off">off</span>
+                                    <span class="btn btn-outline-danger " onclick="func_btn3_off();" id="btn3_id_off">off</span>
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md">
-                                        <label >cond</label>
+                                        <label >Saklar 4</label>
                                     </div>
                                     <div class="col-md mb-2">
                                         <div class="input-group ">
@@ -215,10 +215,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 ">
-                                    <span class="btn btn-outline-success " onclick="condensor_on();" id="condensor_id_on">ON</span>
+                                    <span class="btn btn-outline-success " onclick="func_btn4_on();" id="btn4_id_on">ON</span>
                                     </div>
                                     <div class="col-sm-6">
-                                    <span class="btn btn-outline-danger " onclick="condensor_off();" id="condensor_id_off">off</span>
+                                    <span class="btn btn-outline-danger " onclick="func_btn4_off();" id="btn4_id_off">off</span>
                                     </div>
                                 </div>
                             </div>
@@ -259,122 +259,35 @@
     <!-- /#page-content-wrapper -->
 
   </div>
+  <script src="asset/js/button.js"></script>
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
-        var btn1 = <?php echo $value1?>;
-        var btn2 = <?php echo $value2?>;
-        var btn3 = <?php echo $value3?>;
-        var btn4 = <?php echo $value4?>;
-        // console.log("DDD",btn1)
-        if(btn1)
-            pressure_on();
-        else
-            pressure_off();
-        if(btn2)
-            volume_on();
-        else
-            volume_off();
-        if(btn3)
-            boiler_on();
-        else
-            boiler_off();
-        if(btn4)
-            condensor_on();
-        else
-            condensor_off();
-        
-        function pressure_on(){
-            let count_press =1;
-            // console.log(count_press);
-            let element_on = document.getElementById("press_id_on");
-            let element_off= document.getElementById("press_id_off");
-            element_on.classList.remove("btn-outline-success");
-            element_on.classList.add("btn-success");
-            element_off.classList.remove("btn-danger");
-            element_off.classList.add("btn-outline-danger");
-            document.getElementById('value1').value=count_press; 
-        }
-        function pressure_off(){
-            let count_press =0;
-            // console.log(count_press);
-            let element_on = document.getElementById("press_id_on");
-            let element_off = document.getElementById("press_id_off");
-            element_off.classList.remove("btn-outline-danger");
-            element_off.classList.add("btn-danger");
-            element_on.classList.remove("btn-success");
-            element_on.classList.add("btn-outline-success");
-            document.getElementById('value1').value=count_press; 
-        }
-        function volume_on(){
-            let count_volume =1;
-            // console.log(count_volume);
-            let element_on = document.getElementById("volume_id_on");
-            let element_off= document.getElementById("volume_id_off");
-            element_on.classList.remove("btn-outline-success");
-            element_on.classList.add("btn-success");
-            element_off.classList.remove("btn-danger");
-            element_off.classList.add("btn-outline-danger");
-            document.getElementById('value2').value=count_volume; 
-        }
-        function volume_off(){
-            let count_volume =0;
-            // console.log(count_volume);
-            let element_on = document.getElementById("volume_id_on");
-            let element_off = document.getElementById("volume_id_off");
-            element_off.classList.remove("btn-outline-danger");
-            element_off.classList.add("btn-danger");
-            element_on.classList.remove("btn-success");
-            element_on.classList.add("btn-outline-success");
-            document.getElementById('value2').value=count_volume; 
-        }
-        function boiler_on(){
-            let count_boiler =1;
-            // console.log(count_boiler);
-            let element_on = document.getElementById("boiler_id_on");
-            let element_off= document.getElementById("boiler_id_off");
-            element_on.classList.remove("btn-outline-success");
-            element_on.classList.add("btn-success");
-            element_off.classList.remove("btn-danger");
-            element_off.classList.add("btn-outline-danger");
-            document.getElementById('value3').value=count_boiler; 
-        }
-        function boiler_off(){
-            let count_boiler =0;
-            // console.log(count_boiler);
-            let element_on = document.getElementById("boiler_id_on");
-            let element_off = document.getElementById("boiler_id_off");
-            element_off.classList.remove("btn-outline-danger");
-            element_off.classList.add("btn-danger");
-            element_on.classList.remove("btn-success");
-            element_on.classList.add("btn-outline-success");
-            document.getElementById('value3').value=count_boiler; 
-        }
-        function condensor_on(){
-            let count_condensor =1;
-            // console.log(count_condensor);
-            let element_on = document.getElementById("condensor_id_on");
-            let element_off= document.getElementById("condensor_id_off");
-            element_on.classList.remove("btn-outline-success");
-            element_on.classList.add("btn-success");
-            element_off.classList.remove("btn-danger");
-            element_off.classList.add("btn-outline-danger");
-            document.getElementById('value4').value=count_condensor; 
-        }
-        function condensor_off(){
-            let count_condensor =0;
-            // console.log(count_condensor);
-            let element_on = document.getElementById("condensor_id_on");
-            let element_off = document.getElementById("condensor_id_off");
-            element_off.classList.remove("btn-outline-danger");
-            element_off.classList.add("btn-danger");
-            element_on.classList.remove("btn-success");
-            element_on.classList.add("btn-outline-success");
-            document.getElementById('value4').value=count_condensor; 
-        }
+    var btn1 = <?php echo $value1?>;
+    var btn2 = <?php echo $value2?>;
+    var btn3 = <?php echo $value3?>;
+    var btn4 = <?php echo $value4?>;
+    // console.log("DDD",btn1)
+    if(btn1)
+        func_btn1_on();
+    else
+        func_btn1_off();
+    if(btn2)
+        func_btn2_on();
+    else
+        func_btn2_off();
+    if(btn3)
+        func_btn3_on();
+    else
+        func_btn3_off();
+    if(btn4)
+        func_btn4_on();
+    else
+        func_btn4_off();
+    
   </script>
 
 </body>

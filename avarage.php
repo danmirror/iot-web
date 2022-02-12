@@ -10,12 +10,12 @@
   else{
     $data = mysqli_query($konek,"SELECT * FROM tb_sensor");
   }
-  $time = [];
-  $suhu1=[];
-  $suhu2 = [];
-  $kelembaban1 = [];
-  $kelembaban2 = [];
-  $gas = [];
+  $time     = [];
+  $sensor1  = [];
+  $sensor2  = [];
+  $sensor3  = [];
+  $sensor4  = [];
+  $sensor5  = [];
 
   $rows=[];
 	while($row=mysqli_fetch_assoc($data)){
@@ -25,12 +25,12 @@
   // exit;
 
   $day_arr = [];
-  $temp_suhu1 = [];
-  $temp_suhu2 = [];
-  $temp_kelembaban1 = [];
-  $temp_kelembaban2 = [];
-  $temp_gas = [];
-  $data_time = [];
+  $temp_sensor1 = [];
+  $temp_sensor2 = [];
+  $temp_sensor3 = [];
+  $temp_sensor4 = [];
+  $temp_sensor5 = [];
+  $data_time    = [];
 
   foreach($rows as $row){
     $time_data = strtotime($row["time"]);
@@ -39,29 +39,29 @@
     
     if (!in_array($day,$day_arr)){
       if(!empty($day_arr)){
-        $suhu1[]        = max($temp_suhu1);
-        $suhu2[]        = max($temp_suhu2);
-        $kelembaban1[]  = max($temp_kelembaban1);
-        $kelembaban2[]  = max($temp_kelembaban2);
-        $gas[]          = max($temp_gas);
-        $time[]         = end($data_time);
+        $sensor1[]  = max($temp_sensor1);
+        $sensor2[]  = max($temp_sensor2);
+        $sensor3[]  = max($temp_sensor3);
+        $sensor4[]  = max($temp_sensor4);
+        $sensor5[]  = max($temp_sensor5);
+        $time[]     = end($data_time);
       }
-      $day_arr []       = $day;
-      $temp_suhu1       = [];
-      $temp_suhu2       = [];
-      $temp_kelembaban1 = [];
-      $temp_kelembaban2 = [];
-      $temp_gas         = [];
+      $day_arr []   = $day;
+      $temp_sensor1 = [];
+      $temp_sensor2 = [];
+      $temp_sensor3 = [];
+      $temp_sensor4 = [];
+      $temp_sensor5 = [];
       
     }
-    $temp_suhu1[]       = $row["suhu1"];
-    $temp_suhu2[]       = $row["suhu2"];
-    $temp_kelembaban1[] = $row["kelembaban1"];
-    $temp_kelembaban2[] = $row["kelembaban2"];
-    $temp_gas[]         = $row["gas"];
-    $data_time[]        = date("d-M-Y", $time_data);
+    $temp_sensor1[] = $row["sensor1"];
+    $temp_sensor2[] = $row["sensor2"];
+    $temp_sensor3[] = $row["sensor3"];
+    $temp_sensor4[] = $row["sensor4"];
+    $temp_sensor5[] = $row["sensor5"];
+    $data_time[]    = date("d-M-Y", $time_data);
   }
-  // var_dump($suhu1);
+  // var_dump($sensor1);
   /*
   * Last day
   *
@@ -82,26 +82,26 @@
     // exit();
     if(end($data_time) == $day){
       
-      $container1[] = $row["suhu1"];
-      $container2[] = $row["suhu2"];
-      $container3[] = $row["kelembaban1"];
-      $container4[] = $row["kelembaban2"];
-      $container5[] = $row["gas"];
+      $container1[] = $row["sensor1"];
+      $container2[] = $row["sensor2"];
+      $container3[] = $row["sensor3"];
+      $container4[] = $row["sensor4"];
+      $container5[] = $row["sensor5"];
       $container_time[] = date("d-M-Y", $time_data);
       
     }
   }
   //last day algoritm
   if(!empty($container1)){
-    $suhu1[]        = max($container1);
-    $suhu2[]        = max($container2);
-    $kelembaban1[]  = max($container3);
-    $kelembaban2[]  = max($container4);
-    $gas[]          = max($container5);
-    $time[] = end($data_time);
+    $sensor1[]  = max($container1);
+    $sensor2[]  = max($container2);
+    $sensor3[]  = max($container3);
+    $sensor4[]  = max($container4);
+    $sensor5[]  = max($container5);
+    $time[]     = end($data_time);
   }
 
-// var_dump($suhu1);
+// var_dump($sensor1);
 // exit();
 ?>
 
@@ -255,29 +255,29 @@
     });
 
     let time = <?php echo json_encode($time)?>;
-    let suhu1 = <?php echo json_encode($suhu1)?>;
-    let suhu2 = <?php echo json_encode($suhu2)?>;
+    let sensor1 = <?php echo json_encode($sensor1)?>;
+    let sensor2 = <?php echo json_encode($sensor2)?>;
 
-    let endsuhu1 =  <?= json_encode(end($suhu1)) ?>;
-    let endsuhu2 =  <?= json_encode(end($suhu2)) ?>;
+    let endsensor1 =  <?= json_encode(end($sensor1)) ?>;
+    let endsensor2 =  <?= json_encode(end($sensor2)) ?>;
 
-    let kelembaban1 = <?php echo json_encode($kelembaban1)?>;
-    let kelembaban2 = <?php echo json_encode($kelembaban2)?>;
+    let sensor3 = <?php echo json_encode($sensor3)?>;
+    let sensor4 = <?php echo json_encode($sensor4)?>;
     
-    let endkelembaban1 =  <?= json_encode(end($kelembaban1)) ?>;
-    let endkelembaban2 =  <?= json_encode(end($kelembaban2)) ?>;
+    let endsensor3 =  <?= json_encode(end($sensor3)) ?>;
+    let endsensor4 =  <?= json_encode(end($sensor4)) ?>;
     
-    let gas = <?php echo json_encode($gas)?>;
-    let endgas =  <?= json_encode(end($gas)) ?>;
+    let sensor5 = <?php echo json_encode($sensor5)?>;
+    let endsensor5 =  <?= json_encode(end($sensor5)) ?>;
 
-    double_lines(suhu1,kelembaban1, time, 'sensor1',"Value Sensor 1");
-    double_bars(endsuhu1,endkelembaban1,'bar1');
+    double_lines(sensor1,sensor3, time, 'sensor1',"Value Sensor 1");
+    double_bars(endsensor1,endsensor3,'bar1');
     
-    double_lines(suhu2,kelembaban2, time, 'sensor2',"Value Sensor 2");
-    double_bars(endsuhu2,endkelembaban2,'bar2');
+    double_lines(sensor2,sensor4, time, 'sensor2',"Value Sensor 2");
+    double_bars(endsensor2,endsensor4,'bar2');
 
-    lines(gas, time, 'sensor3',"Value Sensor 3");
-    bars(endgas,'bar3');
+    lines(sensor5, time, 'sensor3',"Value Sensor 3");
+    bars(endsensor5,'bar3');
   </script>
 
 </body>
