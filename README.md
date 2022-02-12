@@ -12,33 +12,26 @@ setup your database using iot_table.sql
 
 ### Package rest api
 
-    data1 = 90
+    sensor1 = 90
 
 you can add more data with change in connect.php and change in sql
 
 
 api 
 
-    data1 = 90
-    data2 = 90
-    data3 = 90
+    sensor1 = 90
+    sensor2 = 90
+    sensor3 = 90
 
 connect.php
 
-    $var1 = $_GET['data1'];
-    $var2 = $_GET['data2'];
-    $var3 = $_GET['data3'];
-    mysqli_query($konek, "INSERT INTO iot_table(data_sensor1, data_sensor2, data_sensor3) VALUES('$var1','$var2','$var3')");
+    $sensor1 =$_GET["sensor1"];
+    $sensor2 =$_GET["sensor2"];
+    $sensor3 =$_GET["sensor3"];
+    $sensor4 =$_GET["sensor4"];
+    $sensor5 =$_GET["sensor5"];
 
-iot_table.sql
-
-    CREATE TABLE `iot_table` (
-    `id` int(10) NOT NULL,
-    `data_sensor1` varchar(20) NOT NULL,
-    `data_sensor2` varchar(20) NOT NULL,
-    `data_sensor3` varchar(20) NOT NULL,
-    `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+    $save  = insert($sensor1, $sensor2, $sensor3, $sensor4, $sensor5);
 
 
 ### Author
