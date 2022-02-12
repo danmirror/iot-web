@@ -1,50 +1,22 @@
 <?php
-    include '../config.php';
-    
-    $data = mysqli_query($konek,"SELECT * FROM tb_sensor");
+    include '../function.php';
 
-    $sensor1=[];
-    $sensor2=[];
-    $sensor3=[];
-    $sensor4=[];
-    $sensor5=[];
-    
-    $time   = [];
-    $count  = 0;
-    $rows   = [];
-    while($row=mysqli_fetch_assoc($data)){
-        $rows[]=$row;
-    }
-    // var_dump($rows);
-    // exit;
-    foreach($rows as $row){
-        $time_data = strtotime($row["time"]);
-        $sensor1[] = $row["sensor1"];
-        $sensor2[] = $row["sensor2"];
-        $sensor3[] = $row["sensor3"];
-        $sensor4[] = $row["sensor4"];
-        $sensor5[] = $row["sensor5"];
-
-        // $time[] = date("H:i d-M-Y", $time_data);
-        // $time[] = date("H:i d-M-Y", $time_data+1*60*60);
-        $time[] = date("H:i d-M-Y", $time_data);
-        $count +=1;
-        // var_dump($time);
-    }
+    $rows = query('tb_sensor');
+    $data = show_all($rows);
 
     $container = array(
-        "labels" => $time,
+        "labels" => $data['time'],
         "data" => [
-            'sensor1' =>$sensor1,
-            'sensor2' =>$sensor2,
-            'sensor3' =>$sensor3,
-            'sensor4' =>$sensor4,
-            'sensor5' =>$sensor5,
-            'end_sensor1' =>end($sensor1),
-            'end_sensor2' =>end($sensor2),
-            'end_sensor3' =>end($sensor3),
-            'end_sensor4' =>end($sensor4),
-            'end_sensor5' =>end($sensor5),
+            'sensor1' =>$data['sensor1'],
+            'sensor2' =>$data['sensor2'],
+            'sensor3' =>$data['sensor3'],
+            'sensor4' =>$data['sensor4'],
+            'sensor5' =>$data['sensor5'],
+            'end_sensor1' =>end($data['sensor1']),
+            'end_sensor2' =>end($data['sensor2']),
+            'end_sensor3' =>end($data['sensor3']),
+            'end_sensor4' =>end($data['sensor4']),
+            'end_sensor5' =>end($data['sensor5']),
         ]
     );
     header('Content-Type: application/json; charset=utf-8');

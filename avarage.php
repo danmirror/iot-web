@@ -1,108 +1,19 @@
 <?php
-  require "config.php";
+  require "function.php";
 
   // =========================database query============
+  $rows;
   if (isset($_GET['cari'])){
-    $cari = $_GET['cari'];
-  
-    $data = mysqli_query($konek,"SELECT * FROM tb_sensor WHERE DATE(time) = '$cari' ");
+    $rows = query_search($_GET['cari'],'tb_sensor');
   }
   else{
-    $data = mysqli_query($konek,"SELECT * FROM tb_sensor");
+    $rows = query('tb_sensor');
   }
-  $time     = [];
-  $sensor1  = [];
-  $sensor2  = [];
-  $sensor3  = [];
-  $sensor4  = [];
-  $sensor5  = [];
 
-  $rows=[];
-	while($row=mysqli_fetch_assoc($data)){
-		$rows[]=$row;
-  }
+  $data = average($rows);
   // var_dump($rows);
   // exit;
 
-  $day_arr = [];
-  $temp_sensor1 = [];
-  $temp_sensor2 = [];
-  $temp_sensor3 = [];
-  $temp_sensor4 = [];
-  $temp_sensor5 = [];
-  $data_time    = [];
-
-  foreach($rows as $row){
-    $time_data = strtotime($row["time"]);
-    $day = date("d", $time_data);
-   
-    
-    if (!in_array($day,$day_arr)){
-      if(!empty($day_arr)){
-        $sensor1[]  = max($temp_sensor1);
-        $sensor2[]  = max($temp_sensor2);
-        $sensor3[]  = max($temp_sensor3);
-        $sensor4[]  = max($temp_sensor4);
-        $sensor5[]  = max($temp_sensor5);
-        $time[]     = end($data_time);
-      }
-      $day_arr []   = $day;
-      $temp_sensor1 = [];
-      $temp_sensor2 = [];
-      $temp_sensor3 = [];
-      $temp_sensor4 = [];
-      $temp_sensor5 = [];
-      
-    }
-    $temp_sensor1[] = $row["sensor1"];
-    $temp_sensor2[] = $row["sensor2"];
-    $temp_sensor3[] = $row["sensor3"];
-    $temp_sensor4[] = $row["sensor4"];
-    $temp_sensor5[] = $row["sensor5"];
-    $data_time[]    = date("d-M-Y", $time_data);
-  }
-  // var_dump($sensor1);
-  /*
-  * Last day
-  *
-  */
-
-  $container1= [];
-  $container2= [];
-  $container3= [];
-  $container4= [];
-  $container5= [];
-
-  $container_time=[];
-  foreach($rows as $row){
-    $time_data = strtotime($row["time"]);
-    $day = date("d-M-Y", $time_data);
-
-    // var_dump(end($data_time));
-    // exit();
-    if(end($data_time) == $day){
-      
-      $container1[] = $row["sensor1"];
-      $container2[] = $row["sensor2"];
-      $container3[] = $row["sensor3"];
-      $container4[] = $row["sensor4"];
-      $container5[] = $row["sensor5"];
-      $container_time[] = date("d-M-Y", $time_data);
-      
-    }
-  }
-  //last day algoritm
-  if(!empty($container1)){
-    $sensor1[]  = max($container1);
-    $sensor2[]  = max($container2);
-    $sensor3[]  = max($container3);
-    $sensor4[]  = max($container4);
-    $sensor5[]  = max($container5);
-    $time[]     = end($data_time);
-  }
-
-// var_dump($sensor1);
-// exit();
 ?>
 
 <!DOCTYPE html>
@@ -254,21 +165,21 @@
       $("#wrapper").toggleClass("toggled");
     });
 
-    let time = <?php echo json_encode($time)?>;
-    let sensor1 = <?php echo json_encode($sensor1)?>;
-    let sensor2 = <?php echo json_encode($sensor2)?>;
+    let time        = <?= json_encode($data['time'])?>;
+    let sensor1     = <?= json_encode($data['sensor1'])?>;
+    let sensor2     = <?= json_encode($data['sensor2'])?>;
 
-    let endsensor1 =  <?= json_encode(end($sensor1)) ?>;
-    let endsensor2 =  <?= json_encode(end($sensor2)) ?>;
+    let endsensor1  = <?= json_encode(end($data['sensor1'])) ?>;
+    let endsensor2  = <?= json_encode(end($data['sensor2'])) ?>;
 
-    let sensor3 = <?php echo json_encode($sensor3)?>;
-    let sensor4 = <?php echo json_encode($sensor4)?>;
+    let sensor3     = <?= json_encode($data['sensor3'])?>;
+    let sensor4     = <?= json_encode($data['sensor4'])?>;
     
-    let endsensor3 =  <?= json_encode(end($sensor3)) ?>;
-    let endsensor4 =  <?= json_encode(end($sensor4)) ?>;
+    let endsensor3  = <?= json_encode(end($data['sensor3'])) ?>;
+    let endsensor4  = <?= json_encode(end($data['sensor4'])) ?>;
     
-    let sensor5 = <?php echo json_encode($sensor5)?>;
-    let endsensor5 =  <?= json_encode(end($sensor5)) ?>;
+    let sensor5     = <?= json_encode($data['sensor5'])?>;
+    let endsensor5  = <?= json_encode(end($data['sensor5'])) ?>;
 
     double_lines(sensor1,sensor3, time, 'sensor1',"Value Sensor 1");
     double_bars(endsensor1,endsensor3,'bar1');
@@ -278,6 +189,9 @@
 
     lines(sensor5, time, 'sensor3',"Value Sensor 3");
     bars(endsensor5,'bar3');
+
+    // get new data every 3 seconds
+    // setInterval(ajax_chart, 3000);
   </script>
 
 </body>

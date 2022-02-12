@@ -1,6 +1,7 @@
 <?php
-    include '../config.php';
-    $data = mysqli_query($konek,"SELECT * FROM respon");
+    include '../database.php';
+    $database = database::connect();
+    $data = mysqli_query($database,"SELECT * FROM respon");
     
     $rows=[];
 	while($row=mysqli_fetch_assoc($data)){

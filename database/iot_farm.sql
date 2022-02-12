@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 11, 2022 at 12:23 AM
+-- Generation Time: Feb 12, 2022 at 06:14 PM
 -- Server version: 5.7.35-0ubuntu0.18.04.2
 -- PHP Version: 7.2.34-24+ubuntu18.04.1+deb.sury.org+1
 
@@ -34,13 +34,6 @@ CREATE TABLE `respon` (
   `value4` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `respon`
---
-
-INSERT INTO `respon` (`id`, `value1`, `value2`, `value3`, `value4`) VALUES
-(1, '1', '1', '1', '0');
-
 -- --------------------------------------------------------
 
 --
@@ -49,11 +42,11 @@ INSERT INTO `respon` (`id`, `value1`, `value2`, `value3`, `value4`) VALUES
 
 CREATE TABLE `tb_sensor` (
   `id` int(11) NOT NULL,
-  `suhu1` varchar(10) NOT NULL,
-  `suhu2` varchar(10) NOT NULL,
-  `kelembaban1` varchar(10) NOT NULL,
-  `kelembaban2` varchar(10) NOT NULL,
-  `gas` varchar(10) NOT NULL,
+  `sensor1` varchar(10) NOT NULL,
+  `sensor2` varchar(10) NOT NULL,
+  `sensor3` varchar(10) NOT NULL,
+  `sensor4` varchar(10) NOT NULL,
+  `sensor5` varchar(10) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -81,12 +74,12 @@ ALTER TABLE `tb_sensor`
 -- AUTO_INCREMENT for table `respon`
 --
 ALTER TABLE `respon`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_sensor`
 --
 ALTER TABLE `tb_sensor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

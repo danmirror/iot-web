@@ -1,8 +1,15 @@
 <?php
-  require "config.php";
+	session_start();
+	// remove all session variables
+	session_unset();
+
+	// destroy the session
+	session_destroy(); 
+	
   require "function.php";
 
   // =========================database query============
+	$status =2; //tidak ada kondisi
   if($_SERVER["REQUEST_METHOD"] == "POST"){
     // echo $_POST['value1'];
     $btn1 = $_POST['value1'];
@@ -10,37 +17,26 @@
     $btn3 = $_POST['value3'];
     $btn4 = $_POST['value4'];
 
-    update($konek,$btn1,$btn2,$btn3,$btn4);
+    $status = update($btn1,$btn2,$btn3,$btn4);
 
-    // var_dump($_POST['value1']);
-    // exit();
   }
 
+  $rows;
   if (isset($_GET['cari'])){
-    $cari = $_GET['cari'];
-
-    $data = mysqli_query($konek,"SELECT * FROM respon WHERE time like '%".$cari."%' ");
+    $rows = query_search($_GET['cari'],'respon');
   }
   else{
-    $data = mysqli_query($konek,"SELECT * FROM respon");
+    $rows = query('respon');
   }
-  $value1;
-  $value2;
-  $value3;
-  $value4;
-  
-  $rows=[];
-	while($row=mysqli_fetch_assoc($data)){
-		$rows[]=$row;
-  }
+
   // exit;
   foreach($rows as $row){
-      $value1 = $row["value1"];
-      $value2 = $row["value2"];
-      $value3 = $row["value3"];
-      $value4 = $row["value4"];
-    }
-    // var_dump($value2);
+		$value1 = $row["value1"];
+		$value2 = $row["value2"];
+		$value3 = $row["value3"];
+		$value4 = $row["value4"];
+	}
+    // var_dump($_SESSION["status"]);
 ?>
 
 <!DOCTYPE html>
@@ -128,8 +124,18 @@
         <h4 class="mt-2 ">Setting Response</h4>
         <p class="breadcrumbs">Dashboard / Control</p>
         <div class="container shadow mb-5">
-
-            <div class="container py-5">
+					<?php if($_SESSION["status"] == "succes"):?>
+						<div class="alert alert-success" role="alert">
+							Controlling success!
+						</div>
+					<?php elseif($_SESSION["status"] == "failed"):?>
+						<div class="alert alert-danger" role="alert">
+							Controlling failed, make sure everything is set!
+						</div>
+					
+					<?php endif ?>
+					
+							<div class="container py-5">
                 <form action="" method="post">
                     <div class="row">
                         <div class="col-md-3 ">
@@ -226,26 +232,25 @@
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            control ini menyebabkan sensor off dan sistem monitoring akan berhenti,
-                            tetap control?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">submit</button>
-                        </div>
-                        </div>
+											<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
+																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+																</button>
+														</div>
+														<div class="modal-body">
+																control ini menyebabkan sensor off dan sistem monitoring akan berhenti,
+																tetap control?
+														</div>
+														<div class="modal-footer">
+																<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																<button type="submit" class="btn btn-primary">submit</button>
+														</div>
+													</div>
+											</div>
                     </div>
-                    </div>
-
 
                     <div class="d-flex justify-content-sm-end ">
                         <button  class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#exampleModal">Set</button>
@@ -263,8 +268,8 @@
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
     });
     var btn1 = <?php echo $value1?>;
     var btn2 = <?php echo $value2?>;
@@ -272,21 +277,21 @@
     var btn4 = <?php echo $value4?>;
     // console.log("DDD",btn1)
     if(btn1)
-        func_btn1_on();
+			func_btn1_on();
     else
-        func_btn1_off();
+			func_btn1_off();
     if(btn2)
-        func_btn2_on();
+			func_btn2_on();
     else
-        func_btn2_off();
+			func_btn2_off();
     if(btn3)
-        func_btn3_on();
+			func_btn3_on();
     else
-        func_btn3_off();
+			func_btn3_off();
     if(btn4)
-        func_btn4_on();
+			func_btn4_on();
     else
-        func_btn4_off();
+			func_btn4_off();
     
   </script>
 

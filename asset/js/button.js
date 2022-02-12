@@ -51,7 +51,7 @@ function func_btn3_on(){
     element_on.classList.add("btn-success");
     element_off.classList.remove("btn-danger");
     element_off.classList.add("btn-outline-danger");
-    document.getElementById('value3').value=count_boiler; 
+    document.getElementById('value3').value=count; 
 }
 function func_btn3_off(){
     let count =0;

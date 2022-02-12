@@ -1,44 +1,22 @@
 <?php
-  require "config.php";
+  require "function.php";
 
   // =========================database query============
-  if (isset($_GET['cari'])){
-    $cari = $_GET['cari'];
+  $rows;
+  $ajax_disable = 0;
 
-    $data = mysqli_query($konek,"SELECT * FROM tb_sensor WHERE time like '%".$cari."%' ");
+  if (isset($_GET['cari'])){
+    $rows = query_search($_GET['cari'],'tb_sensor');
+    $ajax_disable = 1;
   }
   else{
-    $data = mysqli_query($konek,"SELECT * FROM tb_sensor");
+    $rows = query('tb_sensor');
   }
-  $sensor1 =[];
-  $sensor2 =[];
-  $sensor3 =[];
-  $sensor4 =[];
-  $sensor5 =[];
-  
-  $time   =[];
-  $count  =0;
-  
-  $rows   =[];
-	while($row=mysqli_fetch_assoc($data)){
-		$rows[]=$row;
-  }
-  // var_dump($rows);
-  // exit;
-  foreach($rows as $row){
-    $time_data = strtotime($row["time"]);
-    $sensor1[] = $row["sensor1"];
-    $sensor2[] = $row["sensor2"];
-    $sensor3[] = $row["sensor3"];
-    $sensor4[] = $row["sensor4"];
-    $sensor5[] = $row["sensor5"];
 
-    // $time[] = date("H:i d-M-Y", $time_data);
-    // $time[] = date("H:i d-M-Y", $time_data+1*60*60);
-    $time[] = date("H:i d-M-Y", $time_data);
-    $count +=1;
-    // var_dump($time);
-  }
+  $data = show_all($rows);
+  // var_dump($data);
+  // exit();
+  
 ?>
 
 <!DOCTYPE html>
@@ -148,7 +126,7 @@
                       <div class=" font-weight-bold text-primary text-uppercase mb-1">
                           Gas
                       </div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor5)?> ppm</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($data['sensor5'])?> ppm</div>
                   </div>
               </div>
             </div>
@@ -160,7 +138,7 @@
                         <div class=" font-weight-bold text-primary text-uppercase mb-1">
                           Suhu1
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor1)?> ℃</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($data['sensor1'])?> ℃</div>
                     </div>
                 </div>
                 </div>
@@ -171,7 +149,7 @@
                     <div class=" font-weight-bold text-primary text-uppercase mb-1">
                           Suhu2
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor2)?> ℃</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($data['sensor2'])?> ℃</div>
                     </div>
                 </div>
             </div> 
@@ -181,7 +159,7 @@
                         <div class=" font-weight-bold text-primary text-uppercase mb-1">
                             Kelembaban1
                         </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor3)?> RH</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($data['sensor3'])?> RH</div>
                     </div>
                 </div>
             </div>
@@ -191,7 +169,7 @@
                         <div class=" font-weight-bold text-primary text-uppercase mb-1">
                             Kelembaban2
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($sensor4)?> RH</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($data['sensor4'])?> RH</div>
                     </div>
                 </div>
             </div>
@@ -267,7 +245,7 @@
               <tbody>
                 <?php
                 $num = 1;
-                for( $i = $count>5  ? $count-5 : 0; $i< count($rows); $i++):?>
+                for( $i = $data['count']>5  ? $data['count']-5 : 0; $i< count($rows); $i++):?>
                  <tr>
                   <th scope="row"><?= $num ?></th>
                   <td><?= $rows[$i]["sensor1"];?></td>
@@ -300,21 +278,21 @@
       $("#wrapper").toggleClass("toggled");
     });
 
-    let time = <?php echo json_encode($time)?>;
-    let sensor1 = <?php echo json_encode($sensor1)?>;
-    let sensor2 = <?php echo json_encode($sensor2)?>;
+    let time        = <?= json_encode($data['time'])?>;
+    let sensor1     = <?= json_encode($data['sensor1'])?>;
+    let sensor2     = <?= json_encode($data['sensor2'])?>;
 
-    let endsensor1 =  <?= json_encode(end($sensor1)) ?>;
-    let endsensor2 =  <?= json_encode(end($sensor2)) ?>;
+    let endsensor1  = <?= json_encode(end($data['sensor1'])) ?>;
+    let endsensor2  = <?= json_encode(end($data['sensor2'])) ?>;
 
-    let sensor3 = <?php echo json_encode($sensor3)?>;
-    let sensor4 = <?php echo json_encode($sensor4)?>;
+    let sensor3     = <?= json_encode($data['sensor3'])?>;
+    let sensor4     = <?= json_encode($data['sensor4'])?>;
     
-    let endsensor3 =  <?= json_encode(end($sensor3)) ?>;
-    let endsensor4 =  <?= json_encode(end($sensor4)) ?>;
+    let endsensor3  = <?= json_encode(end($data['sensor3'])) ?>;
+    let endsensor4  = <?= json_encode(end($data['sensor4'])) ?>;
     
-    let sensor5 = <?php echo json_encode($sensor5)?>;
-    let endsensor5 =  <?= json_encode(end($sensor5)) ?>;
+    let sensor5     = <?= json_encode($data['sensor5'])?>;
+    let endsensor5  = <?= json_encode(end($data['sensor5'])) ?>;
 
     double_lines(sensor1,sensor3, time, 'sensor1',"Value Sensor 1");
     double_bars(endsensor1,endsensor3,'bar1');
@@ -325,8 +303,7 @@
     lines(sensor5, time, 'sensor3',"Value Sensor 3");
     bars(endsensor5,'bar3');
 
-    // get new data every 3 seconds
-    setInterval(ajax_chart, 3000);
+   
 
     function loadDoc() {
       const xhttp = new XMLHttpRequest();
@@ -337,7 +314,15 @@
       xhttp.open("GET", "ajax.php");
       xhttp.send();
     }
-    setInterval(loadDoc, 1000);
+    let ajax_disable = <?= json_encode($ajax_disable)?>
+    
+    console.log(ajax_disable);
+
+    if(ajax_disable == 0){
+      setInterval(ajax_chart, 3000);
+      setInterval(loadDoc, 1000);
+    }
+    // get new data every 3 seconds
 
   </script>
 
