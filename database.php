@@ -6,9 +6,9 @@
 class database{
 
     public static $servername = "localhost";
-    public static $database = "iot_farm";
-    public static $username = "phpmyadmin";
-    public static $password = "phpmyadmin";
+    public static $database = "iot_web";
+    public static $username = "root";
+    public static $password = "dnandev!";
     
     static public function connect(){
         $data = mysqli_connect (

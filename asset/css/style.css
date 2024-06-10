@@ -100,8 +100,6 @@ iframe {
   iframe {
     width: 350px;
     height: 400px; } }
-.card {
-  max-width: 18rem; }
 
 .border-left-one {
   border-left: .35rem solid  #7b93dd !important; }

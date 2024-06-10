@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5ubuntu0.5
+-- version 5.2.1-4.fc40
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Feb 12, 2022 at 06:14 PM
--- Server version: 5.7.35-0ubuntu0.18.04.2
--- PHP Version: 7.2.34-24+ubuntu18.04.1+deb.sury.org+1
+-- Host: localhost
+-- Generation Time: Jun 10, 2024 at 04:38 PM
+-- Server version: 10.11.6-MariaDB
+-- PHP Version: 8.1.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `iot_farm`
+-- Database: `iot_web`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +33,7 @@ CREATE TABLE `respon` (
   `value2` varchar(10) NOT NULL,
   `value3` varchar(10) NOT NULL,
   `value4` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -44,11 +45,18 @@ CREATE TABLE `tb_sensor` (
   `id` int(11) NOT NULL,
   `sensor1` varchar(10) NOT NULL,
   `sensor2` varchar(10) NOT NULL,
-  `sensor3` varchar(10) NOT NULL,
-  `sensor4` varchar(10) NOT NULL,
-  `sensor5` varchar(10) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `sensor3` varchar(10) DEFAULT NULL,
+  `sensor4` varchar(20) DEFAULT NULL,
+  `sensor5` varchar(20) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `tb_sensor`
+--
+
+INSERT INTO `tb_sensor` (`id`, `sensor1`, `sensor2`, `sensor3`, `sensor4`, `sensor5`, `time`) VALUES
+(1, '6', 'NORMAL', '', '', '', '2024-06-10 16:35:15');
 
 --
 -- Indexes for dumped tables
@@ -75,11 +83,14 @@ ALTER TABLE `tb_sensor`
 --
 ALTER TABLE `respon`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `tb_sensor`
 --
 ALTER TABLE `tb_sensor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

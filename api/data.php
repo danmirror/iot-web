@@ -9,9 +9,6 @@
         "data" => [
             'sensor1' =>$data['sensor1'],
             'sensor2' =>$data['sensor2'],
-            'sensor3' =>$data['sensor3'],
-            'sensor4' =>$data['sensor4'],
-            'sensor5' =>$data['sensor5'],
             'end_sensor1' =>end($data['sensor1']),
             'end_sensor2' =>end($data['sensor2']),
             'end_sensor3' =>end($data['sensor3']),

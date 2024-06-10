@@ -161,7 +161,7 @@ function insert($sensor1, $sensor2, $sensor3, $sensor4, $sensor5){
     $status = mysqli_query(
         $database, "INSERT into 
             tb_sensor(sensor1, sensor2, sensor3, sensor4, sensor5)
-            values($sensor1, $sensor2, $sensor3, $sensor4, $sensor5)");
+            values('$sensor1', '$sensor2', '$sensor3', '$sensor4', '$sensor5')");
     return $status;
 }
 function update($btn1,$btn2,$btn3,$btn4){
