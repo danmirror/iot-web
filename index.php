@@ -54,7 +54,7 @@
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">
-        <img src="asset/image/cloud.png" alt="" style="width: 170px;">   
+        <img src="asset/image/smartphone.png" alt="" style="width: 170px;">   
         <p class="logo-title">Internet Of Things</p>
       </div>
       <div class="list-group list-group-flush">
