@@ -51,7 +51,7 @@
                       <div class=" font-weight-bold text-primary text-uppercase mb-1">
 					  	Heart Rate
                       </div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($data['sensor1'])?> ppm</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= end($data['sensor1'])?> bpm</div>
                   </div>
               </div>
             </div>
